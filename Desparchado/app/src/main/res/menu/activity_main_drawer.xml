@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_event"
+            android:icon="@drawable/ic_gps_fixed_black_24dp"
+            android:title="@string/Eventos" />
+        <item
+            android:id="@+id/nav_event_ciu"
+            android:icon="@drawable/ic_center_focus_strong_black_24dp"
+            android:title="@string/Eventos_ciu" />
+
+    </group>
+
+    <item android:title="@string/categorias">
+        <menu>
+            <item
+                android:id="@+id/nav_teatro"
+                android:icon="@drawable/ic_face_black_24dp"
+                android:title="@string/Tea" />
+            <item
+                android:id="@+id/nav_aire"
+                android:icon="@drawable/ic_beach_access_black_24dp"
+                android:title="@string/Aire" />
+            <item
+                android:id="@+id/nav_restau"
+                android:icon="@drawable/ic_local_dining_black_24dp"
+                android:title="@string/Resta" />
+            <item
+                android:id="@+id/nav_bar"
+                android:icon="@drawable/ic_local_bar_black_24dp"
+                android:title="@string/Bares" />
+        </menu>
+    </item>
+
+</menu>
