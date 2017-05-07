@@ -1,4 +1,4 @@
-package david.desparchado;
+package crimondi.desparchado;
 
 import android.app.Activity;
 import android.view.LayoutInflater;

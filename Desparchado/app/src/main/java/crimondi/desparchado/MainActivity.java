@@ -1,9 +1,10 @@
-package david.desparchado;
+package crimondi.desparchado;
 
-import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,28 +14,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.AdapterView;
-import android.widget.ImageButton;
-import android.widget.ListView;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener,
+        Airelibre.OnFragmentInteractionListener,
+        Bares.OnFragmentInteractionListener,
+        Restaurantes.OnFragmentInteractionListener,
+        Teatros.OnFragmentInteractionListener {
 
-
-
-    private String Matematicas[]=new String[]{"26/03/17 10.30 - 12.00 am 303","26/03/17 10.30 - 12.00 am 303","26/03/17 10.30 - 12.00 am 303","26/03/17 10.30 - 12.00 am 303","26/03/17 10.30 - 12.00 am 303"};
-    private String Programacion[]=new String[]{"17/02/17 10.30 - 12.00 am 303","16/03/17 10.30 - 12.00 am 303","26/03/17 10.30 - 12.00 am 303","26/03/17 10.30 - 12.00 am 303"};
-    private String Fisica[]=new String[]{"26/03/17 10.30 - 12.00 am 301","26/03/17 10.30 - 12.00 am 301","26/03/17 10.30 - 12.00 am 301"};
-    private Integer[] imgid={
-            R.mipmap.foto_perfil,
-            R.mipmap.foto_perfil,
-            R.mipmap.foto_perfil,
-            R.mipmap.foto_perfil,
-            R.mipmap.foto_perfil,
-
-    };
-    private ListView lista;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,14 +29,6 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -99,41 +78,36 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_event) {
 
-        } else if (id == R.id.nav_event_ciu) {
+        Fragment fragment = null;
+        boolean menu = false;
 
-        } else if (id == R.id.nav_teatro) {
-
-        } else if (id == R.id.nav_aire) {
-
-        } else if (id == R.id.nav_restau) {
-
-        } else if (id == R.id.nav_bar) {
-
+        if(id == R.id.nav_teatro){
+            fragment = new Teatros();
+            menu= true;
+        }else if (id == R.id.nav_aire){
+            fragment = new Airelibre();
+            menu= true;
+        }else if (id == R.id.nav_restau){
+            fragment= new Restaurantes();
+            menu= true;
+        }else if (id == R.id.nav_bar){
+            fragment = new Bares();
+            menu= true;
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.nav_aire);
-        drawer.closeDrawer(GravityCompat.START);
-        ImageButton logMan2 = (ImageButton) findViewById(R.id.nav_aire);
-        logMan2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
-        ListAdapter adapter=new ListAdapter (this, Matematicas,imgid);
-        lista=(ListView)findViewById(R.id.mi_lista);
-        lista.setAdapter(adapter);
+        if (menu){
+            getSupportFragmentManager().beginTransaction().replace(R.id.contenedor, fragment).commit();
+        }
 
-        lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String Slecteditem= Matematicas[+position];
-                Toast.makeText(getApplicationContext(), Slecteditem, Toast.LENGTH_SHORT).show();
-            }
-        });
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }
