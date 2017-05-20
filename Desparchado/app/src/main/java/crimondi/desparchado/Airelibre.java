@@ -7,6 +7,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
 
 /**
@@ -26,6 +30,11 @@ public class Airelibre extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private ListView lista;
+    private String lugares[] = {"Cerro de Monserrate", "Jardín Botánico de Bogotá Jose Celestino Mutis", "Parque 93",
+            "Parque de Usaquen", "La Macarena", "Parche Criollo", "Parque Central Bavaria", "Parque de la Independencia"};
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -65,6 +74,20 @@ public class Airelibre extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_airelibre, container, false);
+    }
+
+    @Override
+    public void onActivityCreated(Bundle state) {
+        super.onActivityCreated(state);
+        lista = (ListView) getView().findViewById(R.id.mi_lista);
+        ArrayAdapter<String> adaptador = new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, lugares);
+        lista.setAdapter(adaptador);
+        lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView adapterView, View view, int i, long l) {
+                Toast.makeText(getActivity().getApplicationContext(), "Holi", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     // TODO: Rename method, update argument and hook method into UI event

@@ -7,6 +7,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +29,10 @@ public class Bares extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private ListView lista;
+    private String lugares[] = {"León Mozzarella Bar", "Circo Colombia Bar", "Roxanne Gin Bar & Great Food", "La Mar", "Hashi Sushi Bar (Hotel Sheraton Bogotá)",
+            "Exxus Oyster Bar", "Valú Parrilla Bar", "Valú Parrilla Bar"};
 
     private OnFragmentInteractionListener mListener;
 
@@ -72,6 +80,20 @@ public class Bares extends Fragment {
             mListener.onFragmentInteraction(uri);
         }
     }
+    @Override
+    public void onActivityCreated (Bundle state){
+        super.onActivityCreated(state);
+        lista= (ListView)getView().findViewById(R.id.mi_lista);
+        ArrayAdapter<String> adaptador = new ArrayAdapter<String>(getActivity().getApplicationContext(),android.R.layout.simple_list_item_1 ,lugares);
+        lista.setAdapter(adaptador);
+        lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView adapterView, View view, int i, long l) {
+                Toast.makeText(getActivity().getApplicationContext(),"Holi",Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 
     @Override
     public void onAttach(Context context) {

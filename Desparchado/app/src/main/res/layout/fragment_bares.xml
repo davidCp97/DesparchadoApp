@@ -4,22 +4,30 @@
     android:layout_height="match_parent"
     tools:context=".Bares">
 
-    <ScrollView
+    <RelativeLayout
+        android:paddingTop="15dp"
         android:layout_width="match_parent"
-        android:layout_height="448dp"
-        android:layout_weight="1.07"
-        android:fillViewport="true"
-        android:scrollbars="none">
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/img_restaurante"
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            android:src="@drawable/ic_bar"
+            />
 
         <RelativeLayout
+            android:paddingTop ="15dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_below="@+id/img_restaurante">
 
             <ListView
                 android:id="@+id/mi_lista"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </RelativeLayout>
-    </ScrollView>
+
+    </RelativeLayout>
 
 </FrameLayout>

@@ -17,6 +17,10 @@
     <item android:title="@string/categorias">
         <menu>
             <item
+                android:id="@+id/nav_mapa"
+                android:icon="@drawable/ic_face_black_24dp"
+                android:title="@string/Tea" />
+            <item
                 android:id="@+id/nav_teatro"
                 android:icon="@drawable/ic_face_black_24dp"
                 android:title="@string/Tea" />

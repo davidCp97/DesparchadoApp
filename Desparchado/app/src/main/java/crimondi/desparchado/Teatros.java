@@ -7,6 +7,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
 
 /**
@@ -28,6 +32,10 @@ public class Teatros extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    private ListView lista;
+    private String teatros[] = {"Casa E", "Teatro Nacional Fanny Mike", "Teatro Santa Fe", "Teatro Nacional La Castellana", "La Futilería Casa Corto"
+            , "Teatro Ditirambo Galeías", "Casa Buen Viaje", "Teatro Libélula Dorada"};
 
     public Teatros() {
         // Required empty public constructor
@@ -54,10 +62,6 @@ public class Teatros extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -72,6 +76,20 @@ public class Teatros extends Fragment {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
+    }
+
+    @Override
+    public void onActivityCreated (Bundle state){
+        super.onActivityCreated(state);
+        lista= (ListView)getView().findViewById(R.id.mi_lista);
+        ArrayAdapter<String> adaptador = new ArrayAdapter<String>(getActivity().getApplicationContext(),android.R.layout.simple_list_item_1 ,teatros);
+        lista.setAdapter(adaptador);
+        lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView adapterView, View view, int i, long l) {
+                Toast.makeText(getActivity().getApplicationContext(),"Holi",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override

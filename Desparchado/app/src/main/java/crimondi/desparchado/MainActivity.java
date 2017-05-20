@@ -14,6 +14,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
+
+import com.google.android.gms.maps.SupportMapFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
@@ -29,7 +32,6 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -38,6 +40,10 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        // seccion por defecto al iniciar la app (no se tiene en cuenta el login)
+        // Fragment fragment = new ;
+        //getSupportFragmentManager().beginTransaction().replace(R.id.contenedor, fragment).commit();
+
     }
 
     @Override
@@ -81,22 +87,28 @@ public class MainActivity extends AppCompatActivity
 
         Fragment fragment = null;
         boolean menu = false;
-
-        if(id == R.id.nav_teatro){
+        if (id== R.id.nav_mapa){
+            fragment = new MapsActivity();
+            menu = true;
+        }
+        else if (id == R.id.nav_teatro) {
             fragment = new Teatros();
-            menu= true;
-        }else if (id == R.id.nav_aire){
+            menu = true;
+        } else if (id == R.id.nav_aire) {
             fragment = new Airelibre();
-            menu= true;
-        }else if (id == R.id.nav_restau){
-            fragment= new Restaurantes();
-            menu= true;
-        }else if (id == R.id.nav_bar){
+            menu = true;
+        } else if (id == R.id.nav_restau) {
+            fragment = new Restaurantes();
+            menu = true;
+        } else if (id == R.id.nav_bar) {
             fragment = new Bares();
-            menu= true;
+            menu = true;
+        } else {
+            fragment = new MapsActivity();
+            menu = true;
         }
 
-        if (menu){
+        if (menu) {
             getSupportFragmentManager().beginTransaction().replace(R.id.contenedor, fragment).commit();
         }
 
