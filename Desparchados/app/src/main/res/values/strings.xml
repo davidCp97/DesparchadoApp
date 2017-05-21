@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Desparchados</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+
+    <string name="action_settings">Settings</string>
+    <string name="Eventos">Eventos cercanos</string>
+    <string name="Eventos_ciu">Eventos ciudad</string>
+    <string name="categorias">Categorias</string>
+    <string name="Aire">Aeire libre</string>
+    <string name="Tea">Teatros</string>
+    <string name="Bares">Bares</string>
+    <string name="Resta">Restaurantes</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_maps">Map</string>
+</resources>
